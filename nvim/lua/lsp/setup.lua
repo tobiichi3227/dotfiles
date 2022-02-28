@@ -2,7 +2,8 @@ local lsp_installer = require "nvim-lsp-installer"
 
 local servers = {
     sumneko_lua = require "lsp.lua",
-    clangd = require "lsp.clangd"
+    clangd = require "lsp.clangd",
+    jdtls = require "lsp.jdtls",
 }
 
 -- auto install lsp

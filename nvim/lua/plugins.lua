@@ -55,6 +55,18 @@ return require('packer').startup(function(use)
     --     run = ':TSUpdate'
     -- }
 
+    -- autopairs --
+    use 'jiangmiao/auto-pairs'
+
+    -- tagbar --
+    use 'preservim/tagbar'
+
+    -- taglist --
+    use 'vim-scripts/taglist.vim'
+
+    -- rainbow --
+    use 'luochen1990/rainbow'
+
     -- lsp config --
     use {
         'neovim/nvim-lspconfig',

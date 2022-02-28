@@ -33,16 +33,11 @@ lua require('lsp/nvim-cmp')
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set mouse=a
 
-source /home/tobiichi3227/.config/nvim/vim-plug/plugins.vim
-
 lua <<EOF
 vim.g.tokyonight_style = "storm"
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 vim.cmd[[colorscheme tokyonight]]
 EOF
-
-" nmap <F8> :TagbarToggle<CR>
-" nnoremap <silent> <leader>o :TagbarToggle<CR>
 
 let g:rainbow_active = 1
 let g:rainbow_load_separately = [

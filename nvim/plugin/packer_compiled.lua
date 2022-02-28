@@ -74,6 +74,11 @@ _G.packer_plugins = {
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
+  ["auto-pairs"] = {
+    loaded = true,
+    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/auto-pairs",
+    url = "https://github.com/jiangmiao/auto-pairs"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
@@ -158,6 +163,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  rainbow = {
+    loaded = true,
+    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/rainbow",
+    url = "https://github.com/luochen1990/rainbow"
+  },
+  tagbar = {
+    loaded = true,
+    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/tagbar",
+    url = "https://github.com/preservim/tagbar"
+  },
+  ["taglist.vim"] = {
+    loaded = true,
+    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/taglist.vim",
+    url = "https://github.com/vim-scripts/taglist.vim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,

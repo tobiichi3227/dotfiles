@@ -96,6 +96,6 @@ vim.o.listchars = "space:·"
 -- imporve complete
 vim.o.wildmenu = true
 
-vim.o.shortmess = vim.o.shortmess .. 'c'
+-- vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.pumheight = 10
 vim.o.showtabline = 2
