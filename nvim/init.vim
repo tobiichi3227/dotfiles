@@ -9,9 +9,10 @@ lua require('keymaps')
 
 " color theme settings
 
+
 " plugins settings
 " lua require('plugin-settings/which-key')
-" lua require('plugin-settings/nvim-treesitter')
+lua require('plugin-settings/nvim-treesitter')
 " lua require('plugin-settings/telescope')
 " lua require('plugin-settings/nvim-autopair')
 lua require('plugin-settings/nvim-tree')
@@ -34,6 +35,12 @@ lua require('lsp/nvim-cmp')
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set mouse=a
+
+" automatically open nvim-treesitter's highlight function
+autocmd BufEnter * TSBufToggle highlight
+
+" automatically clean the extra space at the end of the line when saving file
+autocmd BufWritePre * :%s/\s\+$//e
 
 lua <<EOF
 vim.g.tokyonight_style = "storm"

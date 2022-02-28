@@ -74,6 +74,9 @@ map("n", "<leader>u", ":UndotreeToggle<CR>", opt)
 map("n", "<leader>time", ":Calendar -view=clock<CR>", opt)
 map("n", "<leader>cal", ":Calendar<CR>", opt)
 
+-- nvim-treesitter
+map("n", "<leader>ht", ":TSBufToggle highlight<CR>", opt)
+
 -- lsp
 
 
