@@ -13,6 +13,9 @@ return require('packer').startup(function(use)
         require = { 'kyazdani42/nvim-web-devicons' }
     }
 
+    -- dashboard --
+    use 'glepnir/dashboard-nvim' 
+
     -- nvim-tree --
     use {
         'kyazdani42/nvim-tree.lua',
@@ -46,8 +49,19 @@ return require('packer').startup(function(use)
     -- undotree --
     use 'mbbill/undotree'
 
-    -- calendar
+    -- calendar --
     use 'itchyny/calendar.vim'
+
+    -- indent-blankline --
+    use 'lukas-reineke/indent-blankline.nvim'
+
+    -- gitsigns --
+    use {
+        'lewis6991/gitsigns.nvim',
+        requires = {
+            'nvim-lua/plenary.nvim'
+        },
+    } 
 
     -- treesitter --
     -- use {

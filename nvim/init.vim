@@ -9,7 +9,6 @@ lua require('keymaps')
 
 " color theme settings
 
-
 " plugins settings
 " lua require('plugin-settings/which-key')
 " lua require('plugin-settings/nvim-treesitter')
@@ -21,6 +20,9 @@ lua require('plugin-settings/bufferline')
 lua require('plugin-settings/comment')
 lua require('plugin-settings/nvim-lualine')
 lua require('plugin-settings/neoscroll')
+lua require('plugin-settings/indent-blankline')
+lua require('plugin-settings/dashboard')
+lua require('plugin-settings/gitsigns')
 
 " lsp settings
 lua require('lsp/setup')
