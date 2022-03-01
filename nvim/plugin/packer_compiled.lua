@@ -214,6 +214,11 @@ _G.packer_plugins = {
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
   },
+  ["vim-devicons"] = {
+    loaded = true,
+    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/vim-devicons",
+    url = "https://github.com/ryanoasis/vim-devicons"
+  },
   ["vim-floaterm"] = {
     loaded = true,
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/vim-floaterm",

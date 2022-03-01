@@ -14,7 +14,10 @@ return require('packer').startup(function(use)
     }
 
     -- dashboard --
-    use 'glepnir/dashboard-nvim' 
+    use 'glepnir/dashboard-nvim'
+
+    -- vim-devicons --
+    use 'ryanoasis/vim-devicons'
 
     -- nvim-tree --
     use {
