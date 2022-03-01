@@ -1,1 +1,1 @@
-require('Comment').setup(require('keymaps').comment) 
+require('Comment').setup(require('keymaps').comment)
