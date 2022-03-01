@@ -73,7 +73,7 @@ return require('packer').startup(function(use)
     }
 
     -- autopairs --
-    use 'jiangmiao/auto-pairs'
+    -- use 'jiangmiao/auto-pairs'
 
     -- tagbar --
     use 'preservim/tagbar'
