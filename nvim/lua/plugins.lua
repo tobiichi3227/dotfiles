@@ -79,7 +79,7 @@ return require('packer').startup(function(use)
     use 'preservim/tagbar'
 
     -- taglist --
-    use 'vim-scripts/taglist.vim'
+    -- use 'vim-scripts/taglist.vim'
 
     -- rainbow --
     use 'luochen1990/rainbow'
