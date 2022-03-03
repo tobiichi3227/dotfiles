@@ -18,6 +18,19 @@ cmp.setup {
       -- require'snippy'.expand_snippet(args.body)
     end,
   },
+
+  sorting = {
+    comparators = {
+        cmp.config.compare.offset,
+        cmp.config.compare.exact,
+        cmp.config.compare.score,
+        require 'cmp-under-comparator'.under,
+        cmp.config.compare.kind,
+        cmp.config.compare.sort_text,
+        cmp.config.compare.length,
+        cmp.config.compare.order,
+    },
+  },
   -- 来源
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -64,3 +77,8 @@ cmp.setup.cmdline(':', {
       { name = 'cmdline' }
     })
 })
+
+-- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- require'lspconfig'.clangd.setup {
+--     capabilities = capabilities,
+-- }

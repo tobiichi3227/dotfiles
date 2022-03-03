@@ -62,7 +62,7 @@ pluginKeys.comment = {
 }
 
 -- tagbar
-map("n", "<leader>o", ":TagbarToggle<CR>", opt)
+-- map("n", "<leader>o", ":TagbarToggle<CR>", opt)
 
 -- vim-floaterm
 map("n", "<leader>ft", ":FloatermNew<CR>", opt)
@@ -76,6 +76,9 @@ map("n", "<leader>cal", ":Calendar<CR>", opt)
 
 -- nvim-treesitter
 map("n", "<leader>ht", ":TSBufToggle highlight<CR>", opt)
+
+-- vista --
+map("n", "<leader>o", ":Vista<CR>", opt)
 
 -- lsp
 

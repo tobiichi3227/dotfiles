@@ -13,6 +13,12 @@ return require('packer').startup(function(use)
         require = { 'kyazdani42/nvim-web-devicons' }
     }
 
+    -- rainbow --
+    use 'luochen1990/rainbow'
+
+    -- nvim-cursorline --
+    use 'yamatsum/nvim-cursorline'
+
     -- dashboard --
     use 'glepnir/dashboard-nvim'
 
@@ -28,6 +34,12 @@ return require('packer').startup(function(use)
     -- comment --
     use 'numToStr/Comment.nvim'
 
+    -- todo-comment --
+    use {
+        'folke/todo-comments.nvim',
+        require = 'nvim-lua/plenary.nvim'
+    }
+
     -- bufferline --
     use {
         'akinsho/bufferline.nvim',
@@ -39,6 +51,9 @@ return require('packer').startup(function(use)
 
     -- neoscroll --
     use 'karb94/neoscroll.nvim'
+
+    -- nvim-scrollbar --
+    use 'petertriho/nvim-scrollbar'
 
     -- vim-floaterm --
     use 'voldikss/vim-floaterm'
@@ -72,17 +87,17 @@ return require('packer').startup(function(use)
         run = ':TSUpdate'
     }
 
+    -- spellsitter --
+    use 'lewis6991/spellsitter.nvim'
+
     -- autopairs --
     -- use 'jiangmiao/auto-pairs'
 
     -- tagbar --
     use 'preservim/tagbar'
 
-    -- taglist --
-    -- use 'vim-scripts/taglist.vim'
-
-    -- rainbow --
-    use 'luochen1990/rainbow'
+    -- vista --
+    use 'liuchengxu/vista.vim'
 
     -- lsp config --
     use {
@@ -96,6 +111,9 @@ return require('packer').startup(function(use)
     use 'hrsh7th/cmp-path' --path
     use 'hrsh7th/cmp-cmdline' --cmdline
     use 'hrsh7th/nvim-cmp'
+    use 'ray-x/lsp_signature.nvim'
+    use 'lukas-reineke/cmp-under-comparator'
+
 
     -- vsnip --
     use 'hrsh7th/cmp-vsnip'

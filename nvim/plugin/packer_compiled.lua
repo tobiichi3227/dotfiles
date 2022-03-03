@@ -74,11 +74,6 @@ _G.packer_plugins = {
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
-  ["auto-pairs"] = {
-    loaded = true,
-    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/auto-pairs",
-    url = "https://github.com/jiangmiao/auto-pairs"
-  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
@@ -109,6 +104,11 @@ _G.packer_plugins = {
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
+  ["cmp-under-comparator"] = {
+    loaded = true,
+    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/cmp-under-comparator",
+    url = "https://github.com/lukas-reineke/cmp-under-comparator"
+  },
   ["cmp-vsnip"] = {
     loaded = true,
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
@@ -133,6 +133,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
+    url = "https://github.com/ray-x/lsp_signature.nvim"
   },
   ["lspkind-nvim"] = {
     loaded = true,
@@ -159,6 +164,11 @@ _G.packer_plugins = {
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-cursorline"] = {
+    loaded = true,
+    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/nvim-cursorline",
+    url = "https://github.com/yamatsum/nvim-cursorline"
+  },
   ["nvim-lsp-installer"] = {
     loaded = true,
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
@@ -168,6 +178,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-scrollbar"] = {
+    loaded = true,
+    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/nvim-scrollbar",
+    url = "https://github.com/petertriho/nvim-scrollbar"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -194,15 +209,20 @@ _G.packer_plugins = {
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/rainbow",
     url = "https://github.com/luochen1990/rainbow"
   },
+  ["spellsitter.nvim"] = {
+    loaded = true,
+    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/spellsitter.nvim",
+    url = "https://github.com/lewis6991/spellsitter.nvim"
+  },
   tagbar = {
     loaded = true,
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/tagbar",
     url = "https://github.com/preservim/tagbar"
   },
-  ["taglist.vim"] = {
+  ["todo-comments.nvim"] = {
     loaded = true,
-    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/taglist.vim",
-    url = "https://github.com/vim-scripts/taglist.vim"
+    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
+    url = "https://github.com/folke/todo-comments.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
@@ -228,6 +248,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/vim-vsnip",
     url = "https://github.com/hrsh7th/vim-vsnip"
+  },
+  ["vista.vim"] = {
+    loaded = true,
+    path = "/home/tobiichi3227/.local/share/nvim/site/pack/packer/start/vista.vim",
+    url = "https://github.com/liuchengxu/vista.vim"
   }
 }
 

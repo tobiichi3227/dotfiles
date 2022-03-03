@@ -5,7 +5,9 @@ end
 
 npairs.setup {
     check_ts = true,
-
+    ts_config = {
+        lua = { 'string' }
+    }
 }
 
 local cmp_autopairs = require "nvim-autopairs.completion.cmp"
