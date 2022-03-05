@@ -42,7 +42,7 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set mouse=a
 
 " automatically open nvim-treesitter's highlight function
-autocmd BufEnter * TSBufToggle highlight
+autocmd WinEnter * TSBufToggle highlight
 
 " automatically clean the extra space at the end of the line when saving file
 autocmd BufWritePre * :%s/\s\+$//e
