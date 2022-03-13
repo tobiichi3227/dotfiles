@@ -52,11 +52,17 @@ return require('packer').startup(function(use)
     -- neoscroll --
     use 'karb94/neoscroll.nvim'
 
+    -- better-escape --
+    use 'max397574/better-escape.nvim'
+
     -- nvim-scrollbar --
     use 'petertriho/nvim-scrollbar'
 
     -- vim-floaterm --
-    use 'voldikss/vim-floaterm'
+    -- use 'voldikss/vim-floaterm'
+
+    -- toggleterm.nvim --
+    use 'akinsho/toggleterm.nvim'
 
     -- vim-startuptime --
     -- use 'dstein64/vim-startuptime'
@@ -93,8 +99,18 @@ return require('packer').startup(function(use)
     -- autopairs --
     -- use 'jiangmiao/auto-pairs'
 
+    -- telescope --
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = {
+            {
+                'nvim-lua/plenary.nvim'
+            }
+        }
+    }
+
     -- tagbar --
-    use 'preservim/tagbar'
+    -- use 'preservim/tagbar'
 
     -- vista --
     use 'liuchengxu/vista.vim'

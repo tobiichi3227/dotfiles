@@ -36,8 +36,8 @@ vim.bo.expandtab = true
 vim.o.autoindent = true
 vim.bo.autoindent = true
 vim.o.smartindent = true
-vim.o.cindent = true
-vim.bo.cindent = true
+-- vim.o.cindent = true
+-- vim.bo.cindent = true
 
 -- search
 vim.o.ignorecase = true

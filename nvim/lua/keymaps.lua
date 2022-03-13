@@ -64,8 +64,10 @@ pluginKeys.comment = {
 -- tagbar
 -- map("n", "<leader>o", ":TagbarToggle<CR>", opt)
 
--- vim-floaterm
-map("n", "<leader>ft", ":FloatermNew<CR>", opt)
+-- toggleterm --
+map("n", "<leader>ft", ":ToggleTerm direction=float<CR>", opt)
+map("n", "<leader>htop", ":lua _HTOP_TOGGLE()<CR>", opt)
+map("n", "<leader>hz", ":ToggleTerm direction=horizontal size=10<CR>", opt)
 
 -- undotree
 map("n", "<leader>u", ":UndotreeToggle<CR>", opt)
@@ -85,6 +87,25 @@ map("n", "<leader>o", ":Vista<CR>", opt)
 
 -- lsp 調用函數shortcut config
 
+map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)
+  -- code action
+map('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
+  -- go xx
+map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
+map('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)
+map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)
+map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opt)
+map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opt)
+-- diagnostic
+map('n', 'go', '<cmd>lua vim.diagnostic.open_float()<CR>', opt)
+map('n', 'gp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opt)
+map('n', 'gn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opt)
+-- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
+-- leader + =
+map('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opt)
+
+
+local pluginKeys = {}
 
 -- lsp 回调函数快捷键设置
 pluginKeys.maplsp = function(mapbuf)
@@ -100,8 +121,8 @@ pluginKeys.maplsp = function(mapbuf)
   mapbuf('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opt)
   -- diagnostic
   mapbuf('n', 'go', '<cmd>lua vim.diagnostic.open_float()<CR>', opt)
-  mapbuf('n', '<C-j>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opt)
-  mapbuf('n', '<C-k>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opt)
+  mapbuf('n', 'gp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opt)
+  mapbuf('n', 'gn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opt)
   -- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
   -- leader + =
   mapbuf('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opt)

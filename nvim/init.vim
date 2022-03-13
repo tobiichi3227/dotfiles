@@ -14,7 +14,7 @@ lua require('keymaps')
 " lua require('plugin-settings/which-key')
 lua require('plugin-settings/nvim-treesitter')
 lua require('plugin-settings/spellsitter')
-" lua require('plugin-settings/telescope')
+lua require('plugin-settings/telescope')
 lua require('plugin-settings/nvim-autopairs')
 lua require('plugin-settings/nvim-tree')
 lua require('plugin-settings/bufferline')
@@ -28,6 +28,7 @@ lua require('plugin-settings/dashboard')
 lua require('plugin-settings/gitsigns')
 lua require('plugin-settings/nvim-scrollbar')
 lua require('plugin-settings/vista')
+lua require('plugin-settings/toggleterm')
 
 " lsp settings
 lua require('lsp/setup')
@@ -42,13 +43,13 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set mouse=a
 
 " automatically open nvim-treesitter's highlight function
-autocmd WinEnter * TSBufToggle highlight
+autocmd WinEnter,WinLeave * TSBufToggle highlight
 
 " automatically clean the extra space at the end of the line when saving file
 autocmd BufWritePre * :%s/\s\+$//e
 
 lua <<EOF
-vim.g.tokyonight_style = "storm"
+vim.g.tokyonight_style = "night"
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 vim.cmd[[colorscheme tokyonight]]
 EOF
