@@ -8,6 +8,9 @@ return require('packer').startup(function(use)
     -- tokyonight color themes --
     use 'folke/tokyonight.nvim'
 
+    -- nvim-web-devicons --
+    use 'kyazdani42/nvim-web-devicons'
+
     -- nvim-lualine --
     use { 'nvim-lualine/lualine.nvim',
         require = { 'kyazdani42/nvim-web-devicons' }
@@ -107,6 +110,12 @@ return require('packer').startup(function(use)
                 'nvim-lua/plenary.nvim'
             }
         }
+    }
+
+    -- trouble.nvim --
+    use {
+        "folke/trouble.nvim",
+        require = 'kyazdani42/nvim-web-devicons'
     }
 
     -- tagbar --

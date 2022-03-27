@@ -12,6 +12,7 @@ lua require('keymaps')
 
 " plugins settings
 " lua require('plugin-settings/which-key')
+lua require('plugin-settings/nvim-web-devicons')
 lua require('plugin-settings/nvim-treesitter')
 lua require('plugin-settings/spellsitter')
 lua require('plugin-settings/telescope')
@@ -29,6 +30,9 @@ lua require('plugin-settings/gitsigns')
 lua require('plugin-settings/nvim-scrollbar')
 lua require('plugin-settings/vista')
 lua require('plugin-settings/toggleterm')
+lua require('plugin-settings/trouble')
+
+" markdown
 
 " lsp settings
 lua require('lsp/setup')
@@ -50,6 +54,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 lua <<EOF
 vim.g.tokyonight_style = "night"
+-- vim.g.tokyonight_style = "day"
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 vim.cmd[[colorscheme tokyonight]]
 EOF
@@ -63,3 +68,7 @@ let g:rainbow_load_separately = [
      \ ]
 let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
 let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
+
+let g:mkdp_auto_start = 0
+let g:mkdp_browser = ''
+let g:mkdp_refresh_start = 1

@@ -82,6 +82,9 @@ map("n", "<leader>ht", ":TSBufToggle highlight<CR>", opt)
 -- vista --
 map("n", "<leader>o", ":Vista<CR>", opt)
 
+-- trouble --
+map("n", "<leader>tr", ":TroubleToggle<CR>", opt)
+
 -- lsp
 
 
