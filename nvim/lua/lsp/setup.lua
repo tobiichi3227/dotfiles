@@ -30,6 +30,19 @@ end
 --     end
 -- end
 
+-- lsp_installer.on_server_ready(function(server)
+--   local config = servers[server.name]
+--   if config == nil then
+--     return
+--   end
+--   if config.on_setup then
+--     config.on_setup(server)
+--   else
+--     server:setup({})
+--   end
+-- end)
+
+
 lsp_installer.on_server_ready(function(server)
   local opts = servers[server.name]
   if opts then

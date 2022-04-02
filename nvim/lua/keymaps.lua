@@ -16,6 +16,10 @@ map("n", "H", "0", opt)
 map("v", "H", "0", opt)
 map("n", "L", "$", opt)
 map("v", "L", "$", opt)
+map("n", "<leader>h", "^", opt)
+map("n", "<leader>l", "g_", opt)
+map("v", "<leader>h", "^", opt)
+map("v", "<leader>l", "g_", opt)
 
 -- visual mode indent
 map("v", "<", "<gv", opt)
@@ -90,10 +94,18 @@ map("n", "<leader>tr", ":TroubleToggle<CR>", opt)
 
 -- lsp 調用函數shortcut config
 
+-- rename
 map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)
-  -- code action
-map('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
-  -- go xx
+-- map('n', '<leader>rn', ':Lspsaga rename<CR>', opt)
+
+-- code action
+-- map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
+map('n', '<leader>ca', ':CodeActionMenu<CR>', opt)
+
+--preview def
+-- map('n', '<leader>pw', ':Lspsaga preview_definition<CR>', opt)
+
+
 map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
 map('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)
 map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)
@@ -113,9 +125,9 @@ local pluginKeys = {}
 -- lsp 回调函数快捷键设置
 pluginKeys.maplsp = function(mapbuf)
   -- rename
-  mapbuf('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)
+  -- mapbuf('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)
   -- code action
-  mapbuf('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
+  -- mapbuf('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
   -- go xx
   mapbuf('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
   mapbuf('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)

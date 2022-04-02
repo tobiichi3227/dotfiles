@@ -130,6 +130,12 @@ return require('packer').startup(function(use)
         'williamboman/nvim-lsp-installer'
     }
 
+    -- lsp ui --
+    use {
+        'weilbith/nvim-code-action-menu',
+        cmd = 'CodeActionMenu'
+    }
+
     -- nvim-cmp --
     use 'hrsh7th/cmp-nvim-lsp' --nvim_lsp
     use 'hrsh7th/cmp-buffer' --buffer

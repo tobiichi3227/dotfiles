@@ -3,8 +3,6 @@ require'nvim-tree'.setup {
     git = {
         enable = false
     },
-    relativenumber = true,
-    number = true,
     diagnostics = {
         enable = false,
         icons = {
@@ -14,7 +12,11 @@ require'nvim-tree'.setup {
         error = "",
         },
     },
-
+    view = {
+        number = true,
+        relativenumber = true,
+        signcolumn = 'yes',
+    },
 
 }
 
