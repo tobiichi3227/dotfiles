@@ -71,6 +71,7 @@ pluginKeys.comment = {
 -- toggleterm --
 map("n", "<leader>ft", ":ToggleTerm direction=float<CR>", opt)
 map("n", "<leader>htop", ":lua _HTOP_TOGGLE()<CR>", opt)
+map("n", "<leader>git", ":lua _LAZYGIT_TOGGLE()<CR>", opt)
 map("n", "<leader>hz", ":ToggleTerm direction=horizontal size=10<CR>", opt)
 
 -- undotree

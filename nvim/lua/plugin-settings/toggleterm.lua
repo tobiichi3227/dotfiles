@@ -34,7 +34,12 @@ toggleterm.setup({
 local terminal = require("toggleterm.terminal").Terminal
 
 local htop = terminal:new({ cmd = "htop", hidden = true })
+local lazygit = terminal:new({ cmd = "lazygit", hidden = true })
 
 function _HTOP_TOGGLE()
     htop:toggle()
+end
+
+function _LAZYGIT_TOGGLE()
+    lazygit:toggle()
 end
