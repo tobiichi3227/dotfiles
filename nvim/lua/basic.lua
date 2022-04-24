@@ -56,8 +56,8 @@ vim.o.showmode = false
 vim.o.cmdheight = 2
 
 -- when file be modified can autoload
-vim.o.autoload = true
-vim.bo.autoload = true
+-- vim.o.autoload = true
+-- vim.bo.autoload = true
 
 -- warp
 vim.o.wrap = false

@@ -31,6 +31,7 @@ lua require('plugin-settings/nvim-scrollbar')
 lua require('plugin-settings/vista')
 lua require('plugin-settings/toggleterm')
 lua require('plugin-settings/trouble')
+lua require('plugin-settings/go-nvim')
 
 " markdown
 
@@ -38,20 +39,19 @@ lua require('plugin-settings/trouble')
 lua require('lsp/setup')
 lua require('lsp/nvim-cmp')
 lua require('lsp/lsp-signature')
-" lua require('lsp/lspsaga')
-" lua require('lsp/nvim-cmp-config')
-" lua require('lsp/diagnostic_signs')
-" lua require('lsp/language_servers')
-
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set mouse=a
+set termguicolors
 
 " automatically open nvim-treesitter's highlight function
 autocmd WinEnter,WinLeave * TSBufToggle highlight
 
 " automatically clean the extra space at the end of the line when saving file
 autocmd BufWritePre * :%s/\s\+$//e
+
+" automatically format golang file
+autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()
 
 lua <<EOF
 vim.g.tokyonight_style = "night"

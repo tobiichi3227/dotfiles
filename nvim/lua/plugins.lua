@@ -46,6 +46,7 @@ return require('packer').startup(function(use)
     -- bufferline --
     use {
         'akinsho/bufferline.nvim',
+        tag = "*",
         require = 'kyazdani42/nvim-web-devicons'
     }
 
@@ -61,17 +62,11 @@ return require('packer').startup(function(use)
     -- nvim-scrollbar --
     use 'petertriho/nvim-scrollbar'
 
-    -- vim-floaterm --
-    -- use 'voldikss/vim-floaterm'
-
     -- toggleterm.nvim --
-    use 'akinsho/toggleterm.nvim'
-
-    -- vim-startuptime --
-    -- use 'dstein64/vim-startuptime'
-
-    -- surround --
-    -- use 'blackCauldron7/surround.nvim'
+    use {
+        'akinsho/toggleterm.nvim',
+        tag = "main",
+    }
 
     -- undotree --
     use 'mbbill/undotree'
@@ -99,9 +94,6 @@ return require('packer').startup(function(use)
     -- spellsitter --
     use 'lewis6991/spellsitter.nvim'
 
-    -- autopairs --
-    -- use 'jiangmiao/auto-pairs'
-
     -- telescope --
     use {
         'nvim-telescope/telescope.nvim',
@@ -118,11 +110,12 @@ return require('packer').startup(function(use)
         require = 'kyazdani42/nvim-web-devicons'
     }
 
-    -- tagbar --
-    -- use 'preservim/tagbar'
-
     -- vista --
     use 'liuchengxu/vista.vim'
+
+    -- go --
+    use 'ray-x/go.nvim'
+    -- go --
 
     -- lsp config --
     use {

@@ -54,19 +54,22 @@ map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
 map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
 
 -- comment
-pluginKeys.comment = {
-    toggler = {
-        line = 'gcc',
-        block = 'gbc',
-    },
-    opleader = {
-        line = 'gc',
-        bock = 'gb'
-    }
-}
+-- pluginKeys.comment = {
+--     toggler = {
+--         line = 'gcc',
+--         block = 'gbc',
+--     },
+--     opleader = {
+--         line = 'gc',
+--         bock = 'gb'
+--     }
+-- }
 
 -- tagbar
 -- map("n", "<leader>o", ":TagbarToggle<CR>", opt)
+
+-- telescope --
+map("n", "<leader>fg", ":Telescope live_grep<CR>", opt)
 
 -- toggleterm --
 map("n", "<leader>ft", ":ToggleTerm direction=float<CR>", opt)
