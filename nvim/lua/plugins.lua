@@ -1,6 +1,9 @@
 return require('packer').startup(function(use)
     -- packer can manage itself
-    use 'wbthomason/packer.nvim'
+    use {
+        'wbthomason/packer.nvim',
+        run = ':PackerSync'
+    }
 
 
     -- plugins --
@@ -114,7 +117,7 @@ return require('packer').startup(function(use)
     use 'liuchengxu/vista.vim'
 
     -- go --
-    use 'ray-x/go.nvim'
+    -- use 'ray-x/go.nvim'
     -- go --
 
     -- lsp config --

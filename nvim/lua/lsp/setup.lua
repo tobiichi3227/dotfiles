@@ -4,7 +4,6 @@ local servers = {
     sumneko_lua = require "lsp.lua",
     clangd = require "lsp.clangd",
     pyright = require "lsp.pyright",
-    gopls = require "lsp.gopls",
 }
 
 -- auto install lsp

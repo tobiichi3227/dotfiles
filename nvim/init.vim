@@ -1,3 +1,4 @@
+" lua
 " lua basic settings
 lua require('basic')
 
@@ -6,9 +7,6 @@ lua require('plugins')
 "
 " keymap settings
 lua require('keymaps')
-
-" color theme settings
-
 
 " plugins settings
 " lua require('plugin-settings/which-key')
@@ -31,27 +29,89 @@ lua require('plugin-settings/nvim-scrollbar')
 lua require('plugin-settings/vista')
 lua require('plugin-settings/toggleterm')
 lua require('plugin-settings/trouble')
-lua require('plugin-settings/go-nvim')
-
-" markdown
+" lua require('plugin-settings/go-nvim')
 
 " lsp settings
 lua require('lsp/setup')
 lua require('lsp/nvim-cmp')
 lua require('lsp/lsp-signature')
+"lua end
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set mouse=a
 set termguicolors
+set lazyredraw
+set foldmethod=manual
+set title
+set showmatch
 
 " automatically open nvim-treesitter's highlight function
-autocmd WinEnter,WinLeave * TSBufToggle highlight
+autocmd BufRead * TSBufToggle highlight
 
 " automatically clean the extra space at the end of the line when saving file
 autocmd BufWritePre * :%s/\s\+$//e
 
-" automatically format golang file
-autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()
+" When editing a file, always jump to the last known cursor position.
+" Don't do it for commit messages, when the position is invalid, or when
+" inside an event handler (happens when dropping a file on gvim).
+autocmd BufReadPost *
+    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+
+
+" tabout
+func SkipPair()
+    if getline('.')[col('.') - 1] == ')' || getline('.')[col('.') - 1] == ']' || getline('.')[col('.') - 1] == '"' || getline('.')[col('.') - 1] == "'" || getline('.')[col('.') - 1] == '}'
+        return "\<Esc>la"
+    else
+        return "\t"
+    endif
+endfunc
+
+inoremap <silent> <TAB> <c-r>=SkipPair()<CR>
+
+" parenthesis/bracket 驚豔到我的功能
+vnoremap i) <esc>`>a)<esc>`<i(<esc>
+vnoremap i] <esc>`>a]<esc>`<i[<esc>
+vnoremap i} <esc>`>a}<esc>`<i{<esc>
+vnoremap i" <esc>`>a"<esc>`<i"<esc>
+vnoremap i' <esc>`>a'<esc>`<i'<esc>
+vnoremap i` <esc>`>a`<esc>`<i`<esc>
+vnoremap i> <esc>`>a><esc>`<i<<esc>
+
+noremap <F1> <Esc>"
+
+" F2 switch number for copy file
+function! HideNumber()
+    if(&relativenumber == &number)
+        set relativenumber! number!
+    elseif(&number)
+        set number!
+    else
+        set relativenumber!
+    endif
+    set number?
+endfunc
+nnoremap <silent> <F2> :call HideNumber()<CR>
+
+" F4 switch wrap
+nnoremap <silent> <F4> :set wrap! wrap?<CR>
+
+set pastetoggle=<F5>
+autocmd InsertLeave * set nopaste
+
+" Map ; to : and save shift
+nnoremap ; :
+
+" like web browser to create new tab
+nnoremap <silent> <C-t> :tabnew<CR>
+inoremap <silent> <C-t> <Esc>:tabnew<CR>
+
+" copy select section to system clipboard
+vnoremap <leader>y "+y
+
+nnoremap <leader>v V`}
 
 lua <<EOF
 vim.g.tokyonight_style = "night"
@@ -59,6 +119,12 @@ vim.g.tokyonight_style = "night"
 vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 vim.cmd[[colorscheme tokyonight]]
 EOF
+
+hi Normal ctermbg=NONE
+highlight NonText ctermbg=NONE
+hi Normal guibg=NONE
+" hi LineNr ctermbg=black
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 let g:rainbow_active = 1
 let g:rainbow_load_separately = [
@@ -70,6 +136,3 @@ let g:rainbow_load_separately = [
 let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
 let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
-let g:mkdp_auto_start = 0
-let g:mkdp_browser = ''
-let g:mkdp_refresh_start = 1

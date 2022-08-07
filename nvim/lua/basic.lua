@@ -63,7 +63,6 @@ vim.o.cmdheight = 2
 vim.o.wrap = false
 vim.wo.warp = false
 
-
 -- mouse supply
 vim.o.mouse = 'a'
 

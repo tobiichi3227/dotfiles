@@ -1,8 +1,15 @@
-local g = vim.g
+local db = require('dashboard')
 
-g.dashboard_disable_at_vimenter = 0
-g.dashboard_disable_statusline = 1
-g.dashboard_default_executive = "telescope"
+
+
+
+
+
+-- local g = vim.g
+
+-- g.dashboard_disable_at_vimenter = 0
+-- g.dashboard_disable_statusline = 1
+-- g.dashboard_default_executive = "telescope"
 
 -- g.dashboard_custom_header = {
 --   '                                                       ',
@@ -20,7 +27,7 @@ g.dashboard_default_executive = "telescope"
 --   ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
 --  }
 
-g.dashboard_custom_header= {
+db.custom_header = {
     '',
     ' ⣿⡇⣿⣿⣿⠛⠁⣴⣿⡿⠿⠧⠹⠿⠘⣿⣿⣿⡇⢸⡻⣿⣿⣿⣿⣿⣿⣿ ',
     ' ⢹⡇⣿⣿⣿⠄⣞⣯⣷⣾⣿⣿⣧⡹⡆⡀⠉⢹⡌⠐⢿⣿⣿⣿⡞⣿⣿⣿ ',
@@ -36,8 +43,13 @@ g.dashboard_custom_header= {
     '    ⣿⡇⢬⡻⡇⡄⠄⠄⠄⡰⢖⠔⠉⠄⠄⠄⠄⣼⠏  ⢸⣿⣿⣿ ',
     '    ⣿⡇⠄⠙⢌⢷⣆⡀⡾⡣⠃⠄⠄⠄⠄⠄⣼⡟    ⢿⣿⣿ ',
     '',
-
 }
+
+-- db.preview_command = "ueberzug"
+-- db.preview_file_Path = '/home/tobiichi3227/Pictures/neo.jpg'
+-- db.preview_file_height = 10
+-- db.preview_file_width  = 10
+
 -- g.dashboard_custom_header = {
 -- '..                                    ..::::^::::.....                     .....               .....',
 -- '..                             ..:^~~!!!!77!!~~~~~~^^^^:::....              ....                ....',
@@ -106,6 +118,6 @@ g.dashboard_custom_header= {
 --    f = { description = { "  Load Last Session         SPC l  " }, command = "SessionLoad" },
 -- }
 
-g.dashboard_custom_footer = {
-   "   ",
-}
+-- g.dashboard_custom_footer = {
+--    "   ",
+-- }

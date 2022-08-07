@@ -11,6 +11,7 @@ local opt = {
 }
 
 map("i", "jj", "<ESC>", opt)
+map("i", "jk", "<ESC>", opt) -- jk 好香(沒)
 map("v", "v", "<ESC>", opt)
 map("n", "H", "0", opt)
 map("v", "H", "0", opt)
@@ -92,6 +93,9 @@ map("n", "<leader>o", ":Vista<CR>", opt)
 
 -- trouble --
 map("n", "<leader>tr", ":TroubleToggle<CR>", opt)
+
+-- Todo
+map("n", "<leader>to", ":TodoTrouble<CR>", opt)
 
 -- lsp
 

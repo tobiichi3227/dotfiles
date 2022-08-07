@@ -24,6 +24,9 @@ set showmode
 set mouse=a
 set encoding=utf-8
 set expandtab
+set ruler
+
+filetype indent on
 
 let mapleader=","
 
@@ -46,3 +49,29 @@ vnoremap L $
 nnoremap <leader>sc :nohlsearch<CR>
 nnoremap <leader>h ^
 nnoremap <leader>l g_
+
+" auto complete bucket
+inoremap ( ()<Esc>i
+inoremap " ""<Esc>i
+inoremap ' ''<Esc>i
+inoremap [ []<Esc>i
+inoremap {<CR> {<CR>}<Esc>ko<Tab>
+inoremap {{ {}<Esc>i
+
+vnoremap i) <esc>`>a)<esc>`<i(<esc>
+vnoremap i] <esc>`>a]<esc>`<i[<esc>
+vnoremap i} <esc>`>a}<esc>`<i{<esc>
+vnoremap i" <esc>`>a"<esc>`<i"<esc>
+vnoremap i' <esc>`>a'<esc>`<i'<esc>
+vnoremap i` <esc>`>a`<esc>`<i`<esc>
+vnoremap i> <esc>`>a><esc>`<i<<esc>
+
+func SkipPair()
+    if getline('.')[col('.') - 1] == ')' || getline('.')[col('.') - 1] == ']' || getline('.')[col('.') - 1] == '"' || getline('.')[col('.') - 1] == "'" || ge    tline('.')[col('.') - 1] == '}'
+         return "\<Esc>la"
+    else
+        return "\t"
+    endif
+endfunc
+
+inoremap <TAB> <c-r>=SkipPair()<CR>
