@@ -3,6 +3,7 @@
 # 2022/8/15 tobiichi3227 version:1.0
 # 2022/8/15 tobiichi3227 version:2.0 add print_value function and fix v1.0 bugs
 # 2022/8/16 tobiichi3227 version:2.1 add you know and prompting???
+# 2022/8/16 tobiichi3227 version:2.2 fix bug
 
 # echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo
 # echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo
@@ -18,7 +19,7 @@
 
 # miyuki is my wife and sister
 
-VERSION="2.1"
+VERSION="2.2"
 cpu_cnt=`cat /proc/cpuinfo | grep "^processor" | wc -l`
 ebp_str[0]="performance"
 ebp_str[4]="balance_performance"
@@ -64,6 +65,7 @@ function set_ebp () {
 
     if [[ $val == -1 ]]; then
         echo "Error Ebp: $1"
+        echo "Can Use Ebp: (performance|balance_performance|normal|balance_power|power)"
         return 1
     fi
 
@@ -168,7 +170,7 @@ function is_root () {
     fi
 }
 
-while getopts ":e:t:g:p:vh:?" OPT; do
+while getopts ":e:t:g:p:vh?" OPT; do
     case $OPT in
         e)
             is_root
