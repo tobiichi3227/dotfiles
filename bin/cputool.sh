@@ -4,6 +4,7 @@
 # 2022/8/15 tobiichi3227 version:2.0 add print_value function and fix v1.0 bugs
 # 2022/8/16 tobiichi3227 version:2.1 add you know and prompting???
 # 2022/8/16 tobiichi3227 version:2.2 fix bug
+# 2022/8/17 tobiichi3227 version:2.3 fix bug
 
 # echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo
 # echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo
@@ -19,7 +20,7 @@
 
 # miyuki is my wife and sister
 
-VERSION="2.2"
+VERSION="2.3"
 cpu_cnt=`cat /proc/cpuinfo | grep "^processor" | wc -l`
 ebp_str[0]="performance"
 ebp_str[4]="balance_performance"
@@ -118,7 +119,7 @@ function set_no_turbo () {
             ;;
         off)
             echo "1" > /sys/devices/system/cpu/intel_pstate/no_turbo
-            echo "Trubo Is On"
+            echo "Trubo Is Off"
             ;;
         *) echo "Error Option: $1"
     esac
