@@ -4,7 +4,7 @@ vim.g.maplocalleader = ","
 
 -- local variables
 local pluginKeys = {}
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 local opt = {
     noremap = true,
     silent = true
@@ -45,6 +45,34 @@ map("n", "sh", ":sp<CR>", opt)  --垂直
 map("n", "sc", "<C-w>c", opt)   --close now window
 map("n", "so", "<C-w>o", opt)   --close other window
 
+-- swap # and *
+map("n", "#", "*", opt)
+map("n", "*", "#", opt)
+
+-- copy select section to system clipboard
+-- vnoremap <leader>y "+y
+map("v", "<leader>y", "\"+y", opt)
+
+-- like web browser to create new tab
+map("n", "<C-t>", ":tabnew<CR>", opt)
+map("i", "<C-t>", ":tabnew<CR>", opt)
+
+-- like web browser to close buffer
+map("n", "<C-w>", ":bw<CR>", opt)
+map("i", "<C-w>", ":bw<CR>", opt)
+
+-- Map ; to : and save shift
+-- map("n", ";", ":", opt)
+
+-- parenthesis/bracket 驚豔到我的功能
+map("v", "i1", "<esc>`>a)<esc>`<i(<esc>", opt)
+map("v", "i2", "<esc>`>a]<esc>`<i[<esc>", opt)
+map("v", "i3", "<esc>`>a}<esc>`<i{<esc>", opt)
+map("v", "i4", "<esc>`>a\"<esc>`<i\"<esc>", opt)
+map("v", "i5", "<esc>`>a'<esc>`<i'<esc>", opt)
+map("v", "i6", "<esc>`>a`<esc>`<i`<esc>", opt)
+map("v", "i7", "<esc>`>a><esc>`<i<<esc>", opt)
+
 -- plugins keymap
 
 -- nvim-tree
@@ -71,19 +99,17 @@ map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
 
 -- telescope --
 map("n", "<leader>fg", ":Telescope live_grep<CR>", opt)
+map("n", "<leader>ff", ":Telescope find_files<CR>", opt)
+map("n", "<leader>fb", ":Telescope buffers<CR>", opt)
 
 -- toggleterm --
 map("n", "<leader>ft", ":ToggleTerm direction=float<CR>", opt)
 map("n", "<leader>htop", ":lua _HTOP_TOGGLE()<CR>", opt)
-map("n", "<leader>git", ":lua _LAZYGIT_TOGGLE()<CR>", opt)
+map("n", "<leader>lg", ":lua _LAZYGIT_TOGGLE()<CR>", opt)
 map("n", "<leader>hz", ":ToggleTerm direction=horizontal size=10<CR>", opt)
 
 -- undotree
 map("n", "<leader>u", ":UndotreeToggle<CR>", opt)
-
--- calendar
-map("n", "<leader>time", ":Calendar -view=clock<CR>", opt)
-map("n", "<leader>cal", ":Calendar<CR>", opt)
 
 -- nvim-treesitter
 map("n", "<leader>ht", ":TSBufToggle highlight<CR>", opt)
@@ -97,64 +123,34 @@ map("n", "<leader>tr", ":TroubleToggle<CR>", opt)
 -- Todo
 map("n", "<leader>to", ":TodoTrouble<CR>", opt)
 
--- lsp
+-- Persistence
+map("n", "<leader>qs", "<cmd>lua require'persistence'.load()<CR>", opt)
+map("n", "<leader>ql", "<cmd>lua require'persistence'.load({last=true})<CR>", opt)
+map("n", "<leader>qd", "<cmd>lua require'persistence'.stop()<CR>", opt)
 
-
--- lsp 調用函數shortcut config
-
--- rename
-map('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)
--- map('n', '<leader>rn', ':Lspsaga rename<CR>', opt)
-
--- code action
--- map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
-map('n', '<leader>ca', ':CodeActionMenu<CR>', opt)
-
---preview def
--- map('n', '<leader>pw', ':Lspsaga preview_definition<CR>', opt)
-
-
-map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
-map('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)
-map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)
-map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opt)
-map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opt)
--- diagnostic
-map('n', 'go', '<cmd>lua vim.diagnostic.open_float()<CR>', opt)
-map('n', 'gp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opt)
-map('n', 'gn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opt)
--- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
--- leader + =
-map('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opt)
-
+-- -- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
 
 local pluginKeys = {}
 
--- lsp 回调函数快捷键设置
-pluginKeys.maplsp = function(mapbuf)
-  -- rename
-  -- mapbuf('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)
-  -- code action
-  -- mapbuf('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opt)
-  -- go xx
-  mapbuf('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
-  mapbuf('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)
-  mapbuf('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opt)
-  mapbuf('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opt)
-  mapbuf('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opt)
-  -- diagnostic
-  mapbuf('n', 'go', '<cmd>lua vim.diagnostic.open_float()<CR>', opt)
-  mapbuf('n', 'gp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opt)
-  mapbuf('n', 'gn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opt)
-  -- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
-  -- leader + =
-  mapbuf('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opt)
-  -- mapbuf('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opt)
-  -- mapbuf('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
-  -- mapbuf('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
-  -- mapbuf('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
-  -- mapbuf('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
-end
+--   -- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
+--   -- leader + =
+--   mapbuf('n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opt)
+--   -- mapbuf('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opt)
+--   -- mapbuf('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
+--   -- mapbuf('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
+--   -- mapbuf('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
+--   -- mapbuf('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
+
+-- debug
+-- map('n', '<leader>db', '<cmd>lua require'dap'.toggle_breakpoint()<CR>')
+
+-- dap
+vim.keymap.set({"i", "n", "v"}, "<F5>", "<cmd>lua require'dap'.continue()<CR>", opt)
+vim.keymap.set({"i", "n", "v"}, "<F10>", "<cmd>lua require'dap'.step_over()<CR>", opt)
+vim.keymap.set({"i", "n", "v"}, "<F11>", "<cmd>lua require'dap'.step_into()<CR>", opt)
+vim.keymap.set({"i", "n", "v"}, "<F12>", "<cmd>lua require'dap'.step_over()<CR>", opt)
+vim.keymap.set({"i", "n", "v"}, "<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", opt)
+map("n", "<leader>debug", "<cmd>lua require'dapui'.toggle()<CR>", opt)
 
 -- nvim-cmp 自动补全
 pluginKeys.cmp = function(cmp)

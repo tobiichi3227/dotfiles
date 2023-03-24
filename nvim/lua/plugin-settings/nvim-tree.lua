@@ -1,8 +1,14 @@
-require'nvim-tree'.setup {
-    auto_close = true,
+require'nvim-tree'.setup({
+    actions = {
+        open_file = {
+            quit_on_open = true,
+        }
+    },
+
     git = {
         enable = false
     },
+
     diagnostics = {
         enable = false,
         icons = {
@@ -12,11 +18,11 @@ require'nvim-tree'.setup {
         error = "",
         },
     },
+
     view = {
         number = true,
         relativenumber = true,
         signcolumn = 'yes',
     },
-
-}
+})
 

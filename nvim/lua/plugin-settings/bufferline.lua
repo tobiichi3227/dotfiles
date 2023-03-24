@@ -8,7 +8,7 @@ require("bufferline").setup {
             end
         end,
 
-        indicator_icon = "",
+        -- indicator_icon = "",
         buffer_close_icon = "",
         modified_icon = "●",
         close_icon = "",

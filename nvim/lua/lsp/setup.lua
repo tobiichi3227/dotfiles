@@ -1,99 +1,137 @@
-local lsp_installer = require "nvim-lsp-installer"
+local util = require('lspconfig.util')
+local navic = require('nvim-navic')
 
-local servers = {
-    sumneko_lua = require "lsp.lua",
-    clangd = require "lsp.clangd",
-    pyright = require "lsp.pyright",
-}
+require("mason").setup({
 
--- auto install lsp
-for name, _ in pairs(servers) do
-    local server_is_found, server = lsp_installer.get_server(name)
-    if server_is_found then
-        if not server:is_installed() then
-            print("Installing " .. name)
-            server:install()
-        end
+})
+
+require("mason-lspconfig").setup({
+    ensure_installed = {
+        "bashls",
+        "clangd",
+        "jsonls",
+        "lua_ls",
+        "pyright",
+        "yamlls",
+        "asm_lsp",
+        "rust_analyzer",
+    },
+})
+
+-- lua
+local opts = { noremap=true, silent=true }
+
+local on_attach = function(client, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    local bufopts = { noremap=true, silent=true, buffer=bufnr }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'gh', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_defintion, bufopts)
+    vim.keymap.set('n', '<leader>ca', ':CodeActionMenu<CR>', bufopts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<leader>=', function() vim.lsp.buf.format {async=true} end, bufopts)
+
+    vim.keymap.set('n', 'go', vim.diagnostic.open_float, bufopts)
+    vim.keymap.set('n', 'gp', vim.diagnostic.goto_prev, bufopts)
+    vim.keymap.set('n', 'gn', vim.diagnostic.goto_next, bufopts)
+
+    -- navic setup
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
     end
 end
 
--- for name, _ in pairs(servers) do
---     if name then
---         name.on_attach = function (_, bufnr)
---             local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
---             require('keymaps').maplsp(buf_set_keymap)
---         end
---         name.flags = {
---             debounce_text_changes = 150,
---         }
---         server:setup(name)
---     end
--- end
+local lsg_flags = {
 
--- lsp_installer.on_server_ready(function(server)
---   local config = servers[server.name]
---   if config == nil then
---     return
---   end
---   if config.on_setup then
---     config.on_setup(server)
---   else
---     server:setup({})
---   end
--- end)
+}
 
+-- bashls
+require('lspconfig')['bashls'].setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+})
 
-lsp_installer.on_server_ready(function(server)
-  local opts = servers[server.name]
-  if opts then
-    opts.on_attach = function(_, bufnr)
-      local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-      -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-      -- 绑定快捷键
-      require('keymaps').maplsp(buf_set_keymap)
-    end
-    opts.flags = {
-      debounce_text_changes = 150,
+-- clangd
+require('lspconfig')['clangd'].setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+
+    settings = {
+        clangd = {
+            arguments = "-extra-arg=-std=c++17",
+            checkUpdates = true,
+        },
+    },
+})
+
+-- sumneko_lua
+require('lspconfig')['lua_ls'].setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                version = 'LuaJIT',
+            },
+            diagnostics = {
+                -- Get the language server to recognize the `vim` global
+                globals = {'vim'},
+            },
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+})
+
+-- pyright
+require('lspconfig')['pyright'].setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+})
+
+-- yamlls
+require('lspconfig')['yamlls'].setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+})
+
+-- jsonls
+require('lspconfig')['jsonls'].setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+})
+
+require('lspconfig')['asm_lsp'].setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+
+    settings = {
+        root_dir = util.find_git_ancestor()
     }
-    server:setup(opts)
-  end
-end)
+})
 
--- local opts = { noremap=true, silent=true }
--- vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
--- vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
--- vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
--- -- vim.api.nvim_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
---
--- -- Use an on_attach function to only map the following keys
--- -- after the language server attaches to the current buffer
--- local on_attach = function(client, bufnr)
---   -- Enable completion triggered by <c-x><c-o>
---   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
---
---   -- Mappings.
---   -- See `:help vim.lsp.*` for documentation on any of the below functions
---   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
---   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
---   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
---   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
---   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
---   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
---   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
---   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
---   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
---   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
---   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
---   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
---   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>=', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
--- end
---
--- -- local servers_temp = { 'pyright', 'clangd', 'sumneko_lua' }
--- for _, lsp in pairs(servers) do
---     require('lspconfig')[lsp].setup {
---         on_attach = on_attach,
---         flags = {
---             debounce_text_changes = 150,
---         }
---     }
--- end
+require('lspconfig')['rust_analyzer'].setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+    -- settings = {
+    --     root_dir = util.root_pattern('Cargo.toml', 'rust-project.json'),
+    --     ['rust_analyzer'] = {
+    --         diagnostics = {
+    --             enable = false,
+    --         }
+    --     }
+    -- }
+})

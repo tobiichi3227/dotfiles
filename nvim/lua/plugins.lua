@@ -75,7 +75,7 @@ return require('packer').startup(function(use)
     use 'mbbill/undotree'
 
     -- calendar --
-    use 'itchyny/calendar.vim'
+    -- use 'itchyny/calendar.vim'
 
     -- indent-blankline --
     use 'lukas-reineke/indent-blankline.nvim'
@@ -91,7 +91,7 @@ return require('packer').startup(function(use)
     -- treesitter --
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
+        -- run = ':TSUpdate'
     }
 
     -- spellsitter --
@@ -116,20 +116,32 @@ return require('packer').startup(function(use)
     -- vista --
     use 'liuchengxu/vista.vim'
 
-    -- go --
-    -- use 'ray-x/go.nvim'
-    -- go --
+    -- dressing.nvim
+    use 'stevearc/dressing.nvim'
 
-    -- lsp config --
+    -- persistence.nvim
+    use 'folke/persistence.nvim'
+
+    -- bigfile.nvim
+    use 'LunarVim/bigfile.nvim'
+
+    -- new lsp config --
     use {
         'neovim/nvim-lspconfig',
-        'williamboman/nvim-lsp-installer'
+        'williamboman/mason.nvim',
+        'williamboman/mason-lspconfig.nvim',
     }
 
     -- lsp ui --
     use {
         'weilbith/nvim-code-action-menu',
         cmd = 'CodeActionMenu'
+    }
+
+    -- nvim-navic
+    use {
+        'SmiteshP/nvim-navic',
+        requires = 'neovim/nvim-lspconfig'
     }
 
     -- nvim-cmp --
@@ -150,5 +162,28 @@ return require('packer').startup(function(use)
     -- lspkind --
     use 'onsails/lspkind-nvim'
 
+    -- debugger
+    use {
+        'ravenxrz/DAPInstall.nvim',
+        'ravenxrz/nvim-dap',
+        'theHamsta/nvim-dap-virtual-text',
+        'rcarriga/nvim-dap-ui',
+    }
 
+    -- vimwiki
+    use {
+        'vimwiki/vimwiki'
+    }
+
+    -- inlay-hints
+    use 'simrat39/inlay-hints.nvim'
+
+    -- rust-tools
+    use 'simrat39/rust-tools.nvim'
+
+    -- rust.vim
+    use 'rust-lang/rust.vim'
+
+    -- vim-startuptime
+    use 'dstein64/vim-startuptime'
 end)
