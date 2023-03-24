@@ -6,6 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export TERM="xterm-256color"
+# alias term="TERM=screen-256color-bce tmux"
 export HISTIGNORE="pwd:ls:vim:yay -Syu:exit:cd:"
 # export QT_DEBUG_PLUGINS=1
 
@@ -106,11 +107,11 @@ source $HOME/.oh-my-zsh/plugins/git/git.plugin.zsh
 
 # tobiichi3227 settings
 # alias ja='kate /home/tobiichi3227/contest_desktop_link/japanese_music.txt'
-alias ja='$HOME/contest_desktop_link/ja'
+alias ja='vim $HOME/contest_desktop_link/japanese_music.json'
 # alias sc='kate $HOME/contest_desktop_link/sc'
 alias neo='neofetch --w3m ~/neo.jpg'
 alias vim='nvim'
-alias vi='nvim'
+alias vi='vim'
 alias cat='bat --theme=tokyo-night --style="numbers,changes,header"'
 alias lg='lazygit'
 alias fzf="fzf --bind 'f1:execute(nvim {})' --preview '[[ \$(file --mime {}) =~ binary ]] &&
@@ -123,11 +124,18 @@ alias fzf="fzf --bind 'f1:execute(nvim {})' --preview '[[ \$(file --mime {}) =~ 
 alias weather="curl wttr.in"
 alias clock="tty-clock -s -c -b -C 4"
 alias w3m-img="w3m -o ext_image_viewer=0"
-alias cpupower="sudo s-tui"
+alias cpu_power="sudo s-tui"
+alias cputool="sudo bash $HOME/github_use/dotfiles/bin/cputool.sh"
+alias grep="rg"
+alias ls="lsd"
+alias diff="delta"
+alias cp="rsync -avh --progress"
+alias gpg="gpg --pinentry-mode=loopback"
+alias codelldb="$HOME/.local/share/nvim/mason/bin/codelldb --port 13000"
 
-alias cpu_no_trubo="echo 1 | sudo tee /sys/devices/system/cpu/intel_pstate/no_trubo" #關閉Boost
-alias cpu_performance="echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor" #開啟性能模式
-alias cpu_powersave="echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor" #開啟節能模式
+# alias cpu_no_trubo="echo 1 | sudo tee /sys/devices/system/cpu/intel_pstate/no_trubo" #關閉Boost
+# alias cpu_performance="echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor" #開啟性能模式
+# alias cpu_powersave="echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor" #開啟節能模式
 
 # vi mode settings
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
@@ -202,3 +210,5 @@ function _comp_kdesrc_run
 complete -o nospace -F _comp_kdesrc_run kdesrc-run
 
 ################################################################################
+
+eval "$(zoxide init zsh)"
