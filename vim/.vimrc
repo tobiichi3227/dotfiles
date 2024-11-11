@@ -9,7 +9,6 @@ set number
 set rnu
 set noignorecase
 set smartcase
-set inc
 set autoindent
 set cindent
 set tabstop=4
@@ -65,12 +64,12 @@ nnoremap sc <C-w>c
 nnoremap so <C-w>o
 
 " auto complete bucket
-inoremap ( ()<Esc>i
-inoremap " ""<Esc>i
-inoremap ' ''<Esc>i
-inoremap [ []<Esc>i
-inoremap {<CR> {<CR>}<Esc>ko<Tab>
-inoremap {{ {}<Esc>i
+" inoremap ( ()<Esc>i
+" inoremap " ""<Esc>i
+" inoremap ' ''<Esc>i
+" inoremap [ []<Esc>i
+" inoremap {<CR> {<CR>}<Esc>ko<Tab>
+" inoremap {{ {}<Esc>i
 
 vnoremap i1 <esc>`>a)<esc>`<i(<esc>
 vnoremap i2 <esc>`>a]<esc>`<i[<esc>
@@ -80,15 +79,15 @@ vnoremap i5 <esc>`>a'<esc>`<i'<esc>
 vnoremap i6 <esc>`>a`<esc>`<i`<esc>
 vnoremap i7 <esc>`>a><esc>`<i<<esc>
 
-func SkipPair()
-    if getline('.')[col('.') - 1] == ')' || getline('.')[col('.') - 1] == ']' || getline('.')[col('.') - 1] == '"' || getline('.')[col('.') - 1] == "'" || getline('.')[col('.') - 1] == '}'
-         return "\<Esc>la"
-    else
-        return "\t"
-    endif
-endfunc
-
-inoremap <TAB> <c-r>=SkipPair()<CR>
+" func SkipPair()
+"     if getline('.')[col('.') - 1] == ')' || getline('.')[col('.') - 1] == ']' || getline('.')[col('.') - 1] == '"' || getline('.')[col('.') - 1] == "'" || getline('.')[col('.') - 1] == '}'
+"          return "\<Esc>la"
+"     else
+"         return "\t"
+"     endif
+" endfunc
+"
+" inoremap <TAB> <c-r>=SkipPair()<CR>
 
 noremap <F1> <Esc>"
 
@@ -119,12 +118,11 @@ nnoremap <silent> <C-t> :tabnew<CR>
 inoremap <silent> <C-t> <Esc>:tabnew<CR>
 
 " copy select section to system clipboard
-vnoremap <leader>y "+y
+xnoremap <silent> <leader>y :w !wl-copy<CR><CR>
 
 nnoremap <leader>v V`}
 
 set mouse=a
-set termguicolors
 set lazyredraw
 set foldmethod=manual
 set title
