@@ -29,6 +29,6 @@ return {
           hide_hidden = false,
         },
       },
-    },
+    }
   },
 }

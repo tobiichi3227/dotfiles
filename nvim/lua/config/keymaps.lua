@@ -3,20 +3,21 @@
 -- Add any additional keymaps here
 
 local Util = require("lazyvim.util")
+local snacks = require("snacks")
 
-local function map(mode, lhs, rhs, opts)
-  local keys = require("lazy.core.handler").handlers.keys
-  ---@cast keys LazyKeysHandler
-  -- do not create the keymap if a lazy keys handler exists
-  if not keys.active[keys.parse({ lhs, mode = mode }).id] then
-    opts = opts or {}
-    opts.silent = opts.silent ~= false
-    vim.keymap.set(mode, lhs, rhs, opts)
-  end
+local function map(mode, lhs, rhs, opts, overwrite)
+    local keys = require("lazy.core.handler").handlers.keys
+    ---@cast keys LazyKeysHandler
+    -- do not create the keymap if a lazy keys handler exists
+    if overwrite or not keys.active[keys.parse({ lhs, mode = mode }).id] then
+        opts = opts or {}
+        opts.silent = opts.silent ~= false
+        vim.keymap.set(mode, lhs, rhs, opts)
+    end
 end
 
 local function remove(mode, lhs, rhs, opts)
-  vim.keymap.del(mode, lhs, opts)
+    vim.keymap.del(mode, lhs, opts)
 end
 
 -- remove default setttings
@@ -30,6 +31,7 @@ remove("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
 remove("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 remove("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 remove("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+remove("n", "<leader>n", function() snacks.notifer.show_history() end, { desc = "Notification History" })
 -- remove("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 -- remove("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 -- remove("n", "<leader>gg", function()
@@ -66,7 +68,7 @@ map("n", ";", ":", { desc = "" })
 map("n", "<C-h>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
 map("n", "<C-l>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
 map("n", "<leader>lg", function()
-  Util.terminal.open({ "lazygit" }, { cwd = Util.root.get() })
+    snacks.lazygit.open({ cwd = Util.root.get() })
 end, { desc = "Lazygit (root dir)" })
 map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
 map("n", "so", "<C-W>o", { desc = "Delete other window" })
@@ -77,6 +79,17 @@ map("n", "<A-j>", "<C-w>j", { desc = "Go to lower window" })
 map("n", "<A-k>", "<C-w>k", { desc = "Go to upper window" })
 map("n", "<A-l>", "<C-w>l", { desc = "Go to right window" })
 map("n", "<leader>um", ":lua require'cmp'.setup.buffer { enabled = false }<CR>", { desc = "Toggle Completion" })
+
+map("n", "<C-S-UP>", "<cmd>m .+1<cr>==", { desc = "Move down" })
+map("n", "<C-S-DOWN>", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("i", "<C-S-UP>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
+map("i", "<C-S-DOWN>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+map("v", "<C-S-UP>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
+map("v", "<C-S-DOWN>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
+
+map("n", "<leader>n", function()
+    require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").root.get() })
+end, { desc = "Explorer NeoTree (root dir)" }, true)
 
 -- map("i", "<C-p>", "<Up>", { desc = "Emacs keymap" })
 -- map("i", "<C-n>", "<Down>", { desc = "Emacs keymap" })
